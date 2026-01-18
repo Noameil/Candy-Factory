@@ -10,7 +10,7 @@
 # Visual Studio Code settings (optional, but good for teams)
 .vscode/
 
-# Visual Studio / Windows cache (if your partner uses Windows)
+# Visual Studio / Windows cache 
 .vs/
 *.user
 *.pdb
