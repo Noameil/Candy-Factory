@@ -1,0 +1,18 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Visual Studio Code settings (optional, but good for teams)
+.vscode/
+
+# Visual Studio / Windows cache 
+.vs/
+*.user
+*.pdb
+*.ipch
+*.aps
