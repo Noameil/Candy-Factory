@@ -6,13 +6,14 @@ class ChocolateSupplier
 {
 private:
     string chocolateSupplier;
+    
 
 public:
     ChocolateSupplier(const string& Name) : chocolateSupplier(Name) {}
-    ~ChocolateSupplier();
+    ~ChocolateSupplier() {}
 
-    void supplyChocolate();
+    void supplyChocolate() const {std::cout<< chocolateSupplier <<" is supplying chocolate!"<<std::endl; }
 
-    inline const char *getChocolateName() const {}
-    inline void setChocolateName(const char *newName) {}
+    inline const string getChocolateName() const {return chocolateSupplier;}
+    inline void setChocolateName(const string& chocName) {chocolateSupplier = chocName;}
 };

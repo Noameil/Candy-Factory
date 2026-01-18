@@ -9,10 +9,10 @@ private:
 
 public:
     SugarSupplier(const string& Name) : supplierName(Name) {}
-    ~SugarSupplier();
+    ~SugarSupplier() {}
 
-    void supplySugar();
+    void supplySugar() const {std::cout<<supplierName<<" I supplying sugar!"<<std::endl;}
 
-    inline const char *getSugarName() const {}
-    inline void setSugarName(const char *newName) {}
+    inline const string getSugarName() const {return supplierName;}
+    inline void setSugarName(const string sugName) {supplierName = sugName;}
 };

@@ -1,13 +1,14 @@
 #pragma once
 #include <iostream>
-#include <stdexcept>
+#include <string>
 
 template<typename T>
 class DynamicArray
 {
 private:
     int capacity;
-    int size;
+    int count;
+    
     T* arr;
     void resize()
     {
@@ -15,9 +16,9 @@ private:
         int newCap = capacity * 2;
 
         T* newArr = new T[newCap];
-        if(!newArr ) {cout<<"Memory Allocation Failed."<<endl; return;}
+        if(!newArr ) throw std::runtime_error("Memory Allocation Failed");
         int i = 0;
-        for(int i = 0; i < size; i++)
+        for(int i = 0; i < count; i++)
             newArr[i] = arr[i];
         delete[] arr;
         arr = newArr;
@@ -27,7 +28,7 @@ private:
 
 
 public:
-    DynamicArray(int initCap = 2) : size(0), capacity(initCap), arr(new T[capacity]) {}
+    DynamicArray(int initCap = 2) : count(0), capacity(initCap), arr(new T[capacity]) {}
     ~DynamicArray()
     {
         if(arr != nullptr)
@@ -37,34 +38,34 @@ public:
     //add element to the top of the array
     void pushBack(const T& value)
     {
-        if(size == capacity)
+        if(count == capacity)
             resize();
-        arr[size] = value;
-        size++;
+        arr[count] = value;
+        count++;
     }
-    T& operator[](int index)
+    const T& operator[](int index) const
     {
-        if(index < 0 || index >= size )
-            throw std::out_of_range("Index out of bounds!");
+        if(index < 0 || index >= count )
+            throw std::runtime_error("Index out of bounds!");
         return arr[index];
     }
     //returns the element at the top index and "removes it"
     T& popBack() 
     {
-        if(size > 0)
-            return arr[--size];
-        else throw std::out_of_range("No elements in Arr!");
+        if(count > 0)
+            return arr[--count];
+        else throw std::runtime_error("No elements in Arr!");
     }
     
     void removeAt(int index)
     {
-        if(index < 0 || index >= size) return;
-        for(int i = index; i < size - 1; i++)
+        if(index < 0 || index >= count) throw std::runtime_error("Incorrect index!: " + std::to_string(index));
+        for(int i = index; i < count - 1; i++)
             arr[i] = arr[i+1];
-        size--;
+        count--;
     }
     //how many elements are actually in the array
-    int getSize() const { return size; }
+    int getSize() const { return count; }
     //how many elements are currently allocated
     int getCapacity() const {return capacity;}
 };
