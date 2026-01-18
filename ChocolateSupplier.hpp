@@ -1,12 +1,14 @@
 #pragma once
-
+#include <iostream>
+#include <string>
+using std::string;
 class ChocolateSupplier
 {
 private:
-    const char *chocolateSupplier;
+    string chocolateSupplier;
 
 public:
-    ChocolateSupplier(const char *supplierName);
+    ChocolateSupplier(const string& Name) : chocolateSupplier(Name) {}
     ~ChocolateSupplier();
 
     void supplyChocolate();
